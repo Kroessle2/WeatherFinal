@@ -20,7 +20,7 @@ public class ZipValidator {
         else
             return -1; //returns negative on if validation fails
     }
-    private static boolean isValidZipCode(String zipString){
+    public static boolean isValidZipCode(String zipString){
         String regexString = "^\\d{5}(?:[-\\s]\\d{4})?$"; //Regex to validate zipcodes
 
         Pattern pattern = Pattern.compile(regexString);

@@ -9,7 +9,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 public class WeatherController {
 
-    public static String getWeather(String zipCode) {
+    public static WeatherData getWeather(String zipCode) {
         float parsedZipCode = 0;
         if (ZipValidator.parseZipCode(zipCode) != -1) {
             parsedZipCode = ZipValidator.parseZipCode(zipCode);
@@ -19,6 +19,7 @@ public class WeatherController {
 
         JSONObject currentWeather = null;
 
+        WeatherData weatherData = null;
         try {
 
             String urlStringLocation = String.format("https://api.geocod.io/v1.7/geocode?postal_code=%f&api_key=f167b9ffff7cca2721c97f96f1676cf2799f696&format=simple", parsedZipCode);
@@ -41,6 +42,7 @@ public class WeatherController {
 
             Double latitude = jsonResponse.getDouble("lat");// these are the output of the geocodio api
             Double longitude = jsonResponse.getDouble("lng");
+            String City = jsonResponse.getString("address");
 
 
             String urlStringWeather = String.format("https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&current_weather=true&temperature_unit=fahrenheit", latitude, longitude);
@@ -67,17 +69,29 @@ public class WeatherController {
             //calls to the api
             double temperatureFahrenheit = currentWeather.getDouble("temperature");
             int isDayOrNight = currentWeather.getInt("is_day");
+            double windSpeed = currentWeather.getDouble("windspeed");
+            int windDirectionInt = currentWeather.getInt("winddirection");
 
+            String windDirection = getCompassDirection(windDirectionInt);
+
+            String isDay;
+            if (isDayOrNight == 0) {
+                isDay = "It's Night time";
+            } else {
+                isDay = "It's Day time";
+            }
+
+
+            weatherData = new WeatherData(temperatureFahrenheit, windSpeed, isDay, windDirection, City);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return currentWeather.toString();
+        return weatherData;
     }
 
-//    @Override // incomplete make toString format a console response of the api's Data
-//    public String toString() {
-//        return "Weather\n" +
-//                "Temperature: ";
-//    }
+    private static String getCompassDirection(double angle){
+        String[] directions = {"North","Northeast","East","Southeast","South","Southwest","West","Northwest","North"};
+        return directions[(int)Math.round(((angle % 360) / 45))];
+    }
 }
