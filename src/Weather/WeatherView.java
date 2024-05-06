@@ -33,25 +33,34 @@ public class WeatherView {
             txtTemperature.setPromptText("Temp F");
             hasClicked += 1;
         }
+        txtDisplayTemp();
     }
     int hasClickedWind = 1;
     public void toggleSpeed(ActionEvent actionEvent){ //handles wind speed toggle
         if(hasClickedWind == 1){
             txtWindSpeed.setPromptText("Speed kph");
             hasClickedWind -= 1;
+
         } else {
             txtWindSpeed.setPromptText("Speed mph");
             hasClickedWind += 1;
         }
+        txtDisplayWindSpeed();
     }
 
-    public void clearTxtFields (ActionEvent actionEvent){// clears text fields
+    public void clearTxtFields (ActionEvent actionEvent){// clears text fields and the weather data object
         txtTemperature.setText("");
         txtIsDay.setText("");
         txtZipCode.setText("");
         txtAddress.setText("");
         txtWindDirection.setText("");
         txtWindSpeed.setText("");
+
+        weatherData.setTemperature(null);
+        weatherData.setAddress(null);
+        weatherData.setIsDay(null);
+        weatherData.setWindDirection(null);
+        weatherData.setWindSpeed(null);
     }
     public void setTxtFields() { //fills in text fields with data
         txtAddress.setText(weatherData.getAddress());
