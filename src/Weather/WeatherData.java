@@ -13,9 +13,6 @@ public class WeatherData {
     private String windDirection;
     private String address;
 
-
-
-
     public WeatherData(Double temperature, double windSpeed, String isDay, String windDirection, String address){
         this.temperature = temperature;
         this.windSpeed = windSpeed;

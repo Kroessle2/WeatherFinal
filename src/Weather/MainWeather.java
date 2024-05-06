@@ -1,5 +1,5 @@
 package Weather;
-
+//console application of the weather app
 
 import java.util.Scanner;
 
@@ -8,6 +8,7 @@ public class MainWeather {
         Scanner scan = new Scanner(System.in);
         while (true){
             while (true){
+
             System.out.print("Enter a Zip code: ");
             String zipCode = scan.nextLine();
                 if(ZipValidator.isValidZipCode(zipCode)){
