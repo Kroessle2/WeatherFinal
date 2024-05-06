@@ -15,6 +15,7 @@ public class WeatherFxMain extends Application {
             AnchorPane root = (AnchorPane) loader.load();
             Scene scene = new Scene(root);
 
+            primaryStage.setTitle("Weather");
             primaryStage.setScene(scene);
             primaryStage.show();
         }

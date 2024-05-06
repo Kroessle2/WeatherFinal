@@ -4,10 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Weather.WeatherView">
    <children>
+      <ImageView fx:id="imgClouds" disable="true" fitHeight="707.0" fitWidth="706.0" layoutX="-62.0">
+         <image>
+            <Image url="@../images/blue-sky-with-clouds-for-poster-presentation-website-design-concept-blank-space-for-text-illustration-vector.jpg" />
+         </image>
+      </ImageView>
       <TextField fx:id="txtZipCode" layoutX="184.0" layoutY="55.0" promptText="zipcode" />
       <Label fx:id="lblZipCode" layoutX="69.0" layoutY="59.0" text="Enter a Zipcode: " />
       <TextField id="txtAddress" fx:id="txtAddress" editable="false" layoutX="184.0" layoutY="134.0" promptText="City" />
