@@ -4,7 +4,7 @@
  * Date Last Edited: 4/26/2024
  */
 package Weather;
-
+//this class handles the weather Data object that the console application and the fxml access to display data
 public class WeatherData {
 
     private Double temperature;
