@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 public class ZipValidator {
 
     //parse ZipCode validates and converts zip code to float for the geocodio API
-    public static float parseZipCode(String zipCode){
+    public static int parseZipCode(String zipCode){
         if (isValidZipCode(zipCode)) {
-            float convertedZip = Float.parseFloat(zipCode);
+            int convertedZip = Integer.parseInt(zipCode);
 
             return convertedZip;
         }

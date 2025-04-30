@@ -2,8 +2,18 @@
   <library name="json-20231013">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/json-20231013.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../JavaSpring2024/libs/json-20250107.jar!/" />
+      <root url="file://$USER_HOME$/.jdks/openjdk-23.0.2" />
+      <root url="file://$USER_HOME$/javafx-sdk-23.0.2/lib" />
+      <root url="file://$USER_HOME$/javafx-sdk-23.0.2/lib" />
+      <root url="file://$USER_HOME$/Downloads/openjfx-23.0.2_windows-x64_bin-sdk" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="file://$USER_HOME$/javafx-sdk-23.0.2" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/javafx-sdk-23.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/javafx-sdk-23.0.2/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/javafx-sdk-23.0.2" recursive="false" type="SOURCES" />
   </library>
 </component>

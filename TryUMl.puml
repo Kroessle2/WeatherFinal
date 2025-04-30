@@ -1,0 +1,24 @@
+@startuml
+actor User
+
+User -> WeatherView : enterZipCode()
+User -> WeatherView : clickSubmit()
+
+WeatherView -> WeatherController : setAddress(zipCode)
+WeatherView -> WeatherController : validateZip()
+
+WeatherController -> ZipValidator : isValid(zipCode)
+ZipValidator --> WeatherController : true/false
+
+alt zip code is valid
+    WeatherView -> WeatherController : fetchWeatherData()
+    WeatherController -> WeatherData : setTemperature()
+    WeatherController -> WeatherData : setWindSpeed()
+    WeatherController -> ForecastData : setTimes()
+    WeatherController -> ForecastData : setTemperatures()
+    WeatherController --> WeatherView : return weather info
+    WeatherView -> User : displayWeather()
+else zip code invalid
+    WeatherView -> User : showError("Invalid Zip Code")
+end
+@enduml

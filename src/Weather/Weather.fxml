@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -8,28 +12,40 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Weather.WeatherView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Weather.WeatherView">
    <children>
-      <ImageView fx:id="imgClouds" disable="true" fitHeight="707.0" fitWidth="706.0" layoutX="-62.0">
+      <ImageView fx:id="imgClouds" disable="true" fitHeight="729.0" fitWidth="706.0" layoutX="-45.0" layoutY="-16.0">
          <image>
             <Image url="@../images/blue-sky-with-clouds-for-poster-presentation-website-design-concept-blank-space-for-text-illustration-vector.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="txtZipCode" layoutX="184.0" layoutY="55.0" promptText="zipcode" />
-      <Label fx:id="lblZipCode" layoutX="69.0" layoutY="59.0" text="Enter a Zipcode: " />
-      <TextField id="txtAddress" fx:id="txtAddress" editable="false" layoutX="184.0" layoutY="134.0" promptText="City" />
-      <TextField fx:id="txtTemperature" editable="false" layoutX="184.0" layoutY="170.0" promptText="Temp F" />
-      <TextField fx:id="txtWindSpeed" editable="false" layoutX="184.0" layoutY="206.0" promptText="Speed mph" />
-      <TextField fx:id="txtWindDirection" editable="false" layoutX="184.0" layoutY="245.0" promptText="direction" />
-      <TextField fx:id="txtIsDay" editable="false" layoutX="184.0" layoutY="285.0" promptText="Day/Night" />
-      <Label layoutX="125.0" layoutY="138.0" text="City: " />
-      <Label layoutX="78.0" layoutY="173.0" text="Temperature:" />
-      <Label layoutX="79.0" layoutY="206.0" text="Wind Speed:" />
-      <Label layoutX="63.0" layoutY="249.0" text="Wind Direction:" />
-      <Label layoutX="114.0" layoutY="289.0" text="Time: " />
-      <Button fx:id="btnSubmit" layoutX="183.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="26.0" prefWidth="82.0" text="Submit" />
-      <ToggleButton fx:id="btnToggleTemp" layoutX="376.0" layoutY="169.0" mnemonicParsing="false" onAction="#toggleTemp" prefHeight="26.0" prefWidth="90.0" text="F/C" />
-      <Button fx:id="btnClearText" layoutX="282.0" layoutY="94.0" mnemonicParsing="false" onAction="#clearTxtFields" prefHeight="26.0" prefWidth="82.0" text="Clear" />
-      <ToggleButton fx:id="btnToggleSpeed" layoutX="376.0" layoutY="205.0" mnemonicParsing="false" onAction="#toggleSpeed" prefHeight="26.0" prefWidth="89.0" text="mph/kph" />
+      <TextField fx:id="txtZipCode" layoutX="222.0" layoutY="52.0" promptText="zipcode" />
+      <Label fx:id="lblZipCode" layoutX="123.0" layoutY="56.0" text="Enter a Zipcode: " />
+      <TextField id="txtAddress" fx:id="txtAddress" disable="true" editable="false" layoutX="228.0" layoutY="135.0" promptText="City" />
+      <TextField fx:id="txtTemperature" disable="true" editable="false" layoutX="228.0" layoutY="171.0" promptText="Temp F" />
+      <TextField fx:id="txtWindSpeed" disable="true" editable="false" layoutX="228.0" layoutY="207.0" promptText="Speed mph" />
+      <TextField fx:id="txtWindDirection" disable="true" editable="false" layoutX="228.0" layoutY="246.0" promptText="direction" />
+      <TextField fx:id="txtIsDay" disable="true" editable="false" layoutX="228.0" layoutY="286.0" promptText="Day/Night" />
+      <Label layoutX="190.0" layoutY="139.0" text="City: " />
+      <Label layoutX="148.0" layoutY="176.0" text="Temperature:" />
+      <Label layoutX="150.0" layoutY="211.0" text="Wind Speed:" />
+      <Label layoutX="133.0" layoutY="250.0" text="Wind Direction:" />
+      <Label layoutX="184.0" layoutY="290.0" text="Time: " />
+      <Button fx:id="btnSubmit" defaultButton="true" layoutX="221.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleButtonSubmit" prefHeight="26.0" prefWidth="67.0" text="Submit" />
+      <ToggleButton fx:id="btnToggleTemp" layoutX="388.0" layoutY="171.0" mnemonicParsing="false" onAction="#toggleTemp" prefHeight="26.0" prefWidth="90.0" text="F/C" />
+      <Button fx:id="btnClearText" cancelButton="true" layoutX="304.0" layoutY="91.0" mnemonicParsing="false" onAction="#clearTxtFields" prefHeight="26.0" prefWidth="67.0" text="Clear" />
+      <ToggleButton fx:id="btnToggleSpeed" layoutX="389.0" layoutY="207.0" mnemonicParsing="false" onAction="#toggleSpeed" prefHeight="26.0" prefWidth="89.0" text="mph/kph" />
+      <Label fx:id="lblhover" layoutX="68.0" layoutY="303.0" text="Label" />
+      <LineChart fx:id="crtForecast" alternativeColumnFillVisible="true" alternativeRowFillVisible="false" axisSortingPolicy="NONE" horizontalGridLinesVisible="false" layoutX="17.0" layoutY="349.0" onMouseExited="#exit" onMouseMoved="#trackMouse" opacity="0.8" prefHeight="342.0" prefWidth="583.0" title="7 Day Temperature Forecast" verticalGridLinesVisible="false">
+        <xAxis>
+          <CategoryAxis fx:id="lblChartXaxis" gapStartAndEnd="false" label="Hourly Temperature" side="BOTTOM" tickLabelsVisible="false" tickMarkVisible="false" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="lblCrtYAxis" label="Temperature" minorTickVisible="false" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" />
+        </yAxis>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </LineChart>
    </children>
 </AnchorPane>
