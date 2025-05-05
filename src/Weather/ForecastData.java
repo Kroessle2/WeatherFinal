@@ -1,6 +1,7 @@
 package Weather;
 
 import org.json.JSONArray;
+
 import java.util.Arrays;
 
 public class ForecastData {

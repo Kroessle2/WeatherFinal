@@ -1,17 +1,17 @@
 package Weather;
 
 import javafx.event.ActionEvent;
-
 import javafx.scene.Node;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -55,21 +55,23 @@ public class WeatherView {
     @javafx.fxml.FXML
     private LineChart crtForecast;
     @javafx.fxml.FXML
-    private Pane pnGraph;
-    @javafx.fxml.FXML
     private Label lblhover;
 
 
     @javafx.fxml.FXML
     public void handleButtonSubmit(ActionEvent actionEvent) { // handles submit button
-        String zipcode = txtZipCode.getCharacters().toString();
-        if (ZipValidator.isValidZipCode(zipcode)){
-            weatherData = WeatherController.getWeather(zipcode);
-            forecastData= WeatherController.getForecast(zipcode);
-            setTxtFields();
-            populateChart();
-        }else {
-            txtZipCode.setText("Invalid Zip!");
+        try {
+            String zipcode = txtZipCode.getCharacters().toString();
+            if (ZipValidator.isValidZipCode(zipcode)){
+                weatherData = WeatherController.getWeather(zipcode);
+                forecastData= WeatherController.getForecast(zipcode);
+                setTxtFields();
+                populateChart();
+            }else {
+                txtZipCode.setText("Invalid Zipcode!");
+            }
+        }catch (Exception e){
+            txtZipCode.setText("Invalid Zipcode!");
         }
     }
 
